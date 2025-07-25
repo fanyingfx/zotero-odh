@@ -13,6 +13,7 @@ function registerAddNoteLinks(doc: Document) {
         dindex: ds.dindex,
         context: doc.querySelector(".spell-content")?.innerHTML,
         extrainfo: doc.querySelector(".odh-extra")?.innerHTML,
+        title:doc.title,
       });
     });
   }
