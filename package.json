@@ -1,6 +1,6 @@
 {
   "name": "zotero-odh",
-  "version": "0.3.8",
+  "version": "0.3.9",
   "description": "a odh wrapper for Zotero",
   "config": {
     "addonName": "Zotero ODH",
