@@ -39,6 +39,8 @@ jobs:
         run: |
           npm run release
           sleep 1s
+        env:
+          GITHUB_TOKEN: ${{  secrets.GITHUB_TOKEN }}
 
       - name: Notify release
         uses: apexskier/github-release-commenter@v1
