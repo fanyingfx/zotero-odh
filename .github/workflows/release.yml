@@ -11,10 +11,11 @@ permissions:
   pull-requests: write
   repository-projects: write
 
-
 jobs:
   release:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     env:
       GITHUB_TOKEN: ${{ secrets.GitHub_TOKEN }}
     steps:
