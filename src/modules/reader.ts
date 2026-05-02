@@ -45,6 +45,7 @@ export function registerReaderInitializer() {
         .then((result: any) => {
           const translation = new Translation(optionsLoad());
           translation._document = reader._iframe!.contentDocument;
+
           // translation._window = reader._iframe;
           addon.data.currentTranslation = translation;
           addon.data.currentTranslation.notes = result;
@@ -95,6 +96,9 @@ export function registerReaderInitializer() {
           // popup.contentWindow!.scrollTo(0, 0);
           // popup.srcdoc = content;
           // popup.src = "chrome://zodh/content/popup.html";
+
+          // NOTE hack pass
+          doc.title = reader._title;
           onDomContentLoaded(doc);
           // updateStyle(popup, ".spell-bar", getSpellBarClassStyle);
           // updateStyle(popup, ".spell-zone", getSpellZoneClassStyle);
@@ -396,8 +400,9 @@ export class Translation {
     dindex: any;
     context: any;
     extrainfo: any;
+    url:any
   }) {
-    const { nindex, dindex, context, extrainfo } = params;
+    const { nindex, dindex, context, extrainfo,url } = params;
 
     const notedef = Object.assign({}, this.notes[nindex]);
     notedef.definition =
@@ -405,8 +410,9 @@ export class Translation {
     notedef.definitions =
       this.notes[nindex].css + this.notes[nindex].definitions.join("<hr/>");
     notedef.sentence = context;
-    notedef.url = window.location.href;
+    notedef.url = url;
     notedef.extrainfo = extrainfo;
+    
     const response = await addon.api_addNote(notedef);
 
     if (this._document == null) return;

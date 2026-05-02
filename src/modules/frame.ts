@@ -6,13 +6,12 @@ function registerAddNoteLinks(doc: Document) {
       e.stopPropagation();
       e.preventDefault();
       const ds = (e.currentTarget as HTMLImageElement).dataset;
-      // (e.currentTarget as HTMLImageElement)!.src = getImageSource(doc, "load");
-
       addon.data.currentTranslation?.api_addNote({
         nindex: ds.nindex,
         dindex: ds.dindex,
         context: doc.querySelector(".spell-content")?.innerHTML,
         extrainfo: doc.querySelector(".odh-extra")?.innerHTML,
+        url:doc.title,
       });
     });
   }
